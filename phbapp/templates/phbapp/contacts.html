@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Contacts
+    </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'phbapp/style.css' %}">
+</head>
+<body>
+    <div class="page_container" id="contacts_page">
+        <header>
+            <img src="{%static 'phbapp/images/phoneico.png'%}" alt="" class="phone_img">
+            <input type="text" class="filter">
+        </header>
+        <main id="main">
+            {%for contact in contacts%}
+            <div class="contact">
+                <div class="contact_user">
+                    <img src="{%static 'phbapp/images/UserIcon.png'%}" alt="" class="contact_img">
+                    <section class="contact_text_box">
+                        <h2>{{contact.name}}</h2>
+                        <h3>{{contact.phone}}</h3>
+                    </section>
+                </div>
+                <section class="contact_box">
+                    {%if contact.favorite == False%}
+                    <a href="{%url 'update_favorite' contact.id%}">
+                        <img src="{%static 'phbapp/images/heart_ico.png'%}" alt="" class="contact_icons">
+                    </a>
+                    {%else%}
+                    <a href="{%url 'update_favorite' contact.id%}">
+                        <img src="{%static 'phbapp/images/heart_full_ico.png'%}" alt="" class="contact_icons">
+                    </a>
+                    {%endif%}
+                    <a href="{%url 'delete_contact' contact.id%}">
+                        <img src="{%static 'phbapp/images/x_ico.png'%}" alt="" class="contact_icons">
+                    </a>
+                </section>
+            </div>
+            {%endfor%}
+        </main>
+        <a class="add_button" href="{%url 'contact_create'%}">Добавить</a>
+    </div>
+    <script src="{% static 'phbapp/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Contacts
+    </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'phbapp/style.css' %}">
+</head>
+<body>
+    <div class="page_container" id="contacts_page">
+        <header>
+            <img src="{%static 'phbapp/images/phoneico.png'%}" alt="" class="phone_img">
+            <h2 class="filter">Add contact</h2>
+        </header>
+        <form method="post">
+            {% csrf_token%}
+            {{ form}}
+            <button class="create_button" type="submit" value="send">Создать</button>
+        </form>
+    </div>
+    <script src="{% static 'phbapp/script.js' %}"></script>
+</body>
+</html>
